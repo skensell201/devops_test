@@ -1,0 +1,4 @@
+-r tests.txt
+-r production.txt
+coverage
+mypy
