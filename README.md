@@ -1,10 +1,10 @@
 Сборка проекта:
 ```
-python setup.py bdist_wheel
+python3.8 setup.py bdist_wheel
 ```
 
 Запуск тестов:
 ```
-pip install -r requirements/development.txt
+pip3 install -r requirements/development.txt
 pytest tests --cov package
 ```
