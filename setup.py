@@ -29,9 +29,11 @@ install_requires = [
     for req in (HERE / "requirements" / "production.txt").read_text("utf8").split("\n")
 ]
 
-
-with open(f"{PACKAGE_NAME}/build_info", "w") as f:
-    f.write(BUILD)
+f = open(f"{PACKAGE_NAME}/build_info", "w")
+try:
+            f.write(BUILD)
+finally:
+            f.close()
 
 setup(
     name=PACKAGE_NAME,
