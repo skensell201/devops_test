@@ -3,6 +3,7 @@ image: python:3.8-alpine
 stages:
   - build
   - test
+  - release
 
 .before_script_template:
   before_script:
@@ -32,5 +33,17 @@ test:
     - apk add --no-cache gcc libc-dev unixodbc-dev libffi-dev
     - pip3 install -r requirements/development.txt
     - pytest tests --cov package
+  only:
+    - master
+
+release:
+  stage: release
+  image: docker:stable
+  services:
+    - docker:dind
+  script:
+    - docker login -u ${DOCKER_LOGIN} -p ${DOCKER_PASSWORD}
+    - docker build -t ${DOCKER_LOGIN}/${NAME_PROJECT}:${CI_PIPELINE_ID} .
+    - docker push ${DOCKER_LOGIN}/${NAME_PROJECT}:${CI_PIPELINE_ID}
   only:
     - master
