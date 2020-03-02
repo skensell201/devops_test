@@ -1,0 +1,25 @@
+image: python:3.8-alpine
+
+stages:
+  - build
+
+.before_script_template:
+  before_script:
+    - pip3 install wheel
+    - pip install pathlib
+
+cache:
+  key: one-key-to-rule-them-all
+  paths:
+    - .pytest_cache/
+    - build/
+    - dist/
+    - package.egg-info/
+
+build:
+  extends: .before_script_template
+  stage: build
+  script:
+    - python3.8 setup.py bdist_wheel
+  only:
+    - master
