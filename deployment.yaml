@@ -1,18 +1,21 @@
-apiVersion: v1
- kind: Deployment
- metadata:
-   name: devops-test
- spec:
-   replicas: 1
-   selector:
-     matchLabels:
-       app: devops-test
-   template:
-     metadata:
-       labels:
-         app: devops-test
-     spec:
-       containers:
-       - name: devops-test
-         image: ${DOCKER_LOGIN}/${NAME_PROJECT}:${CI_PIPELINE_ID}
-         imagePullPolicy: Always
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-test
+  namespace: devops-test
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: devops-test
+  template:
+    metadata:
+      labels:
+        app: devops-test
+    spec:
+      containers:
+      - name: devops-test
+        image: ${DOCKER_LOGIN}/${NAME_PROJECT}:${CI_PIPELINE_ID}
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8085
