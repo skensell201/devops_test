@@ -28,6 +28,7 @@ build:
     - master
 
 test:
+  cache: {}
   extends: .before_script_template
   stage: test
   script:
