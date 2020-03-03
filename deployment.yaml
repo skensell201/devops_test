@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: devops-test
-  namespace: devops-test
+  name: ${NAME_PROJECT}
+  namespace: ${NAME_PROJECT}
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: devops-test
+      app: ${NAME_PROJECT}
   template:
     metadata:
       labels:
-        app: devops-test
+        app: ${NAME_PROJECT}
     spec:
       containers:
       - name: devops-test
