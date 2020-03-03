@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ${NAME_PROJECT}
-  namespace: ${NAME_PROJECT}
+  name: drweb
+  namespace: drweb
 spec:
   selector:
-    app: ${NAME_PROJECT}
+    app: drweb
   ports:
   - protocol: TCP
     port: 80
