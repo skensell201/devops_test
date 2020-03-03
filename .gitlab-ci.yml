@@ -46,7 +46,7 @@ release:
   script:
     - docker login -u ${DOCKER_LOGIN} -p ${DOCKER_PASSWORD}
     - docker build -t ${DOCKER_LOGIN}/${NAME_PROJECT}:${CI_PIPELINE_ID} .
-    - docker push ${DOCKER_LOGIN}/${NAME_PROJECT}:apply
+    - docker push ${DOCKER_LOGIN}/${NAME_PROJECT}:${CI_PIPELINE_ID}
   only:
     - master
 
