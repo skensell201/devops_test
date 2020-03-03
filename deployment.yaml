@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: drweb
-  namespace: drweb
+  name: drweb-task
+  namespace: drweb-task
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: drweb
+      app: drweb-task
   template:
     metadata:
       labels:
-        app: drweb
+        app: drweb-task
     spec:
       containers:
-      - name: devops-test
-        image: skensel/drweb:__VERSION__
+      - name: drweb-task
+        image: skensel/drweb:{{CI_PIPELINE_ID}}
         imagePullPolicy: Always
         ports:
         - containerPort: 8085

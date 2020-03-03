@@ -46,7 +46,7 @@ release:
   script:
     - docker login -u ${DOCKER_LOGIN} -p ${DOCKER_PASSWORD}
     - docker build -t ${DOCKER_LOGIN}/${NAME_PROJECT}:${CI_PIPELINE_ID} .
-    - docker push ${DOCKER_LOGIN}/${NAME_PROJECT}:${CI_PIPELINE_ID}
+    - docker push ${DOCKER_LOGIN}/${NAME_PROJECT}:apply
   only:
     - master
 
@@ -62,8 +62,7 @@ deploy:
     - kubectl config set-credentials admin --token="$KUBE_TOKEN"
     - kubectl config set-context default --cluster=k8s --user=admin
     - kubectl config use-context default
-    - kubectl create -f site.yaml
     - kubectl create -f service.yaml
-    - kubectl apply -f deployment.yaml
+    - cat deployment.yaml | sed "s/{{CI_PIPELINE_ID}}/$CI_PIPELINE_ID/g" | kubectl apply -f -
   only:
     - master
