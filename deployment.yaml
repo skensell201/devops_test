@@ -4,7 +4,7 @@ metadata:
   name: drweb-task
   namespace: drweb-task
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: drweb-task
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: drweb-task
-        image: skensel/drweb:{{CI_PIPELINE_ID}}
+        image: skensel/drweb:${CI_PIPELINE_ID}
         imagePullPolicy: Always
         ports:
         - containerPort: 8085
