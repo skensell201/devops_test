@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: drweb-task
-        image: skensel/drweb:${CI_PIPELINE_ID}
+        image: skensel/drweb:{{CI_PIPELINE_ID}}
         imagePullPolicy: Always
         ports:
         - containerPort: 8085
